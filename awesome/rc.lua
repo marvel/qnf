@@ -71,8 +71,6 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
                                   }
                         })
 
-mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
-                                     menu = mymainmenu })
 -- }}}
 
 -- {{{ Wibox
@@ -86,13 +84,14 @@ mytextclock = awful.widget.textclock({ align = "right" })
 -- Initialize widget
 memwidget = widget({ type = "textbox" })
 -- Register widget
-vicious.register(memwidget, vicious.widgets.mem, "$1% ($2MB/$3MB)", 13)
+vicious.register(memwidget, vicious.widgets.mem, "Memory: $1% ($2MB/$3MB)", 13)
 
 -- Create a systray
 mysystray = widget({ type = "systray" })
 
 -- Create a wibox for each screen and add it
 mywibox = {}
+mywibox2 = {}
 mypromptbox = {}
 mylayoutbox = {}
 mytaglist = {}
@@ -151,20 +150,25 @@ for s = 1, screen.count() do
    
    -- Create the wibox
    mywibox[s] = awful.wibox({ position = "top", screen = s })
+   mywibox2[s] = awful.wibox({ position = "bottom", screen = s })
+
    -- Add widgets to the wibox - order matters
    mywibox[s].widgets = {
       {
-	 mylauncher,
 	 mytaglist[s],
 	 mypromptbox[s],
 	 layout = awful.widget.layout.horizontal.leftright
       },
       mylayoutbox[s],
-	memwidget, batwidget,
         mytextclock,
         s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
+    }
+    mywibox2[s].widgets = {
+	{
+	   memwidget, batwidget
+	}
     }
 end
 -- }}}
