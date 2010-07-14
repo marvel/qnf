@@ -7,6 +7,7 @@ require("beautiful")
 -- Notification library
 require("naughty")
 require("vicious")
+require("eminent")
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
 beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
@@ -43,7 +44,7 @@ layouts =
 
  -- {{{ Tags
  tags = {
-   names = { "main", "www", "emacs", "mail", "media", "term", "rss", "chat" },
+   names = { "term", "www", "emacs", "docs", "mess", "mail", "rss", "chat" },
    layout = { layouts[2], layouts[1], layouts[1], layouts[4], layouts[1],
               layouts[6], layouts[6], layouts[5], layouts[6]
  }}
