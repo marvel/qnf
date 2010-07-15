@@ -86,6 +86,11 @@ memwidget = widget({ type = "textbox" })
 -- Register widget
 vicious.register(memwidget, vicious.widgets.mem, "Memory: $1% ($2MB/$3MB)", 13)
 
+-- Initialize widget
+cpuwidget = widget({ type = "textbox" })
+-- Register widget
+vicious.register(cpuwidget, vicious.widgets.cpu, "$1%")
+
 -- Create a systray
 mysystray = widget({ type = "systray" })
 
@@ -167,7 +172,7 @@ for s = 1, screen.count() do
     }
     mywibox2[s].widgets = {
 	{
-	   memwidget, batwidget
+	   memwidget
 	}
     }
 end
